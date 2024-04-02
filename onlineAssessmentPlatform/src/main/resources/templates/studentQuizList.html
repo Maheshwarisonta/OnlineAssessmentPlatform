@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styleIndex.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title>studentquizlist</title>
+	<style>
+		body {
+			font-family: 'Times New Roman', Times, serif;
+			background-color: #DCD494;
+		}
+
+		table {
+			width: 95%;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			border: 1px solid #DCD494;
+			padding: 8px;
+			text-align: left;
+		}
+
+		th {
+			background-color: rgb(128, 128, 64);
+		}
+
+		td {
+			background-color: whitesmoke;
+		}
+
+		.btn.btn-secondary {
+			background-color: rgb(128, 128, 64);
+		}
+
+		.btn.btn-secondary:hover {
+			background-color: yellowgreen;
+		}
+
+		.container-fluid {
+			background-color: #DCD494;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" style="font-weight: bolder">Online Assessment</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="navbar-nav">
+					<a class="nav-link" th:href="@{/home}">Home</a>
+					<a class="nav-link active" th:href="@{/quizlist}">QuizList</a>
+					<a class="nav-link" th:href="@{/logout}">Logout</a>
+					<a class="nav-link" th:text="'Name: ' + ${session.username}"></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container my-2">
+		<h2>Quiz List</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Quiz Name</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="quiz : ${listOfUnattemptedQuizzes}">
+					<td th:text="${quiz.quizTitle}"></td>
+					<td><a th:href="@{/startquiz/{id}(id=${quiz.quizId})}" class="btn btn-secondary">Start</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/backtostudentpage}">Back to Student Page</a>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styleIndex.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title>addquestion</title>
+	<style>
+		body {
+			font-family: 'Times New Roman', Times, serif;
+			margin: 0;
+			padding: 0;
+			background-color: #DCD494;
+		}
+
+		.container {
+			width: 300px;
+			margin: 100px auto;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.container h2 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-group label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		.form-group input {
+			width: 100%;
+			padding: 8px;
+			border: 1px solid olive;
+			border-radius: 3px;
+		}
+
+		.form-group button {
+			width: 100%;
+			padding: 8px;
+			border: none;
+			border-radius: 3px;
+			background-color: rgb(128, 128, 64);
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.form-group button:hover {
+			background-color: yellowgreen;
+		}
+
+		.container-fluid {
+			background-color: #DCD494;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" style="font-weight: bolder">Online Assessment</a>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="navbar-nav">
+					<a class="nav-link" th:href="@{/home}">Home</a>
+					<a class="nav-link" th:href="@{/logout}">Logout</a>
+					<a class="nav-link" th:text="'Name: ' + ${session.username}"></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<h2>Add question</h2>
+		<form th:action="@{/addquestion}" method="post" th:object="${question}">
+			<div class="form-group">
+				<label for="questionTitle">Question Title:</label>
+				<input type="text" id="questionTitle" name="questionTitle">
+			</div>
+
+			<div class="form-group">
+				<label for="option1">Option1:</label>
+				<input type="text" id="option1" name="option1">
+			</div>
+
+			<div class="form-group">
+				<label for="option2">Option2:</label>
+				<input type="text" id="option2" name="option2">
+			</div>
+
+			<div class="form-group">
+				<label for="option3">Option3:</label>
+				<input type="text" id="option3" name="option3">
+			</div>
+
+			<div class="form-group">
+				<label for="option4">Option4:</label>
+				<input type="text" id="option4" name="option4">
+			</div>
+
+			<div class="form-group">
+				<label for="correctAnswer">Correct Answer:</label>
+				<input type="text" id="correctAnswer" name="correctAnswer">
+			</div>
+
+			<div class="form-group">
+				<label for="difficultyLevel">Difficulty Level:</label>
+				<input type="text" id="difficultyLevel" name="difficultyLevel">
+			</div>
+
+			<div class="form-group">
+				<label for="score">Score:</label>
+				<input type="text" id="score" name="score">
+			</div>
+
+			<div class="form-group">
+				<button type="submit">Save Question</button>
+			</div>
+		</form>
+		<a th:href="@{/subject}"> Back to Subject List</a>
+	</div>
+</body>
+
+</html>
